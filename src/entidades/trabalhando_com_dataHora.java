@@ -1,10 +1,13 @@
 package entidades;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 public class trabalhando_com_dataHora {
 
@@ -65,6 +68,34 @@ public class trabalhando_com_dataHora {
 		// *** exemplo:
 		DateTimeFormatter formatter_sem_ofPattern = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
+		//// *** Cálculos com Data-hora ***
+		// ATENÇÃO! O objeto Data-hora no Java é imutável, ou seja, uma vez instanciado o objeto, não há como alterá-lo. Deve-se criar um novo objeto
+		
+		// 1 - Data-hora +/- tempo --> ADICIONANDO/REMOVENDO
+		LocalDate dataNascimento = LocalDate.parse("1985-11-28");
+		LocalDate dataFalecimento = dataNascimento.plusYears(85);		
+		
+		LocalDateTime dataHoraCriacaoSenha = LocalDateTime.parse("2024-04-15T21:42:00");
+		LocalDateTime dataHoraExpiracaoSenha = dataHoraCriacaoSenha.plusDays(45);		
+		
+		Instant instante1 = Instant.parse("2024-04-10T20:35:57Z");
+		Instant instante2 = instante1.plusSeconds(60);
+		//ou
+		Instant instante3 = instante1.plus(60, ChronoUnit.SECONDS);
+
+		// 2 - Data-hora 1, Data-hora 2 --> OBTENDO TEMPO DECORRIDO		
+		Duration tempoDeVida = Duration.between(dataNascimento.atTime(0, 0), dataFalecimento.atTime(0, 0));
+		System.out.println(tempoDeVida.toDays() / 365);
+		// ou
+		Duration tempoDeVida2 = Duration.between(dataNascimento.atStartOfDay(), dataFalecimento.atStartOfDay());
+		System.out.println(tempoDeVida2.toDays() / 365);
+		
+		Duration tempoDeVidaDaSenha = Duration.between(dataHoraCriacaoSenha, dataHoraExpiracaoSenha);
+		System.out.println(tempoDeVidaDaSenha.toDays());
+		
+		Duration intervaloEntreInstantes = Duration.between(instante1, instante2);
+		System.out.println(intervaloEntreInstantes.toSeconds());
+		
 		
 	}	
 }

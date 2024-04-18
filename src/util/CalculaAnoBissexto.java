@@ -72,8 +72,6 @@ public class CalculaAnoBissexto {
 
 		}
 
-		System.out.println("***** LISTA DE ANOS BISSEXTOS *****");
-
 		for (int ano : listaAnosBissextos) {
 
 			if (ano == anoParaSerVerificado) {

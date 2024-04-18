@@ -58,14 +58,14 @@ public class Calc {
 		// receber uma data em formato mm/aaaa, parsear em mm e aaaa, converter para int
 		// e passar para a função calcular
 
-		System.out.println("Digite a data para cálculo de salário [MM/AAAA]: ");
-		String date = scan.next();
-		
-		DateTimeFormatter formatter_MMyyyy = DateTimeFormatter.ofPattern("MM/yyyy");
-		YearMonth yearMonthFormatted = YearMonth.parse(date, formatter_MMyyyy); // para transformar a String recebida no formato MM/yyyy em um Objeto YearMonth padrão ISO 8601. Obs: não é possível usar aqui um Objeto LocalDate, pois efetivamente uma data com apenas mês/ano não é uma data, pois não há dia definido; logo, o Objeto não pode ser desse tipo.
-		System.out.println(yearMonthFormatted);
-		System.out.println(yearMonthFormatted.getMonthValue());
-		System.out.println(yearMonthFormatted.getYear());
+//		System.out.println("Digite a data para cálculo de salário [MM/AAAA]: ");
+//		String date = scan.next();
+//		
+//		DateTimeFormatter formatter_MMyyyy = DateTimeFormatter.ofPattern("MM/yyyy");
+//		YearMonth yearMonthFormatted = YearMonth.parse(date, formatter_MMyyyy); // para transformar a String recebida no formato MM/yyyy em um Objeto YearMonth padrão ISO 8601. Obs: não é possível usar aqui um Objeto LocalDate, pois efetivamente uma data com apenas mês/ano não é uma data, pois não há dia definido; logo, o Objeto não pode ser desse tipo.
+//		System.out.println(yearMonthFormatted);
+//		System.out.println(yearMonthFormatted.getMonthValue());
+//		System.out.println(yearMonthFormatted.getYear());
 
 		// agora que já consegui pegar o mês/ano, fazer o cálculo dos ganhos
 		
@@ -93,6 +93,21 @@ public class Calc {
 //		  
 //		// removendo um contrato do worker worker1.removeContract(2);
 //		System.out.println(worker1);
+		
+		LocalDate dataInicioContrato = LocalDate.parse("2024-01-15");
+		LocalDate dataTerminoContrato = LocalDate.parse("2025-01-10");
+		Contrato contrato = new Contrato(1,dataInicioContrato,dataTerminoContrato,100,200d);
+		//contrato.calculaValorTotalDoContrato(dataInicioContrato,dataTerminoContrato);
+	
+		System.out.println("contrato: " + contrato);
+		System.out.println("============================");
+		//System.out.println("mês de início: " + contrato.calculaValorPrimeiroMes());		
+		System.out.println("meses do meio: " + contrato.calculaValorMesesDoMeio());
+		//System.out.println("mês de término: " + contrato.calculaValorUltimoMes());
+		//System.out.println("TOTAL: " + contrato.somaTudo());	
+		
+		// PARA 18/04: tem um bug no calculaValorMesesDoMeio quando o ano de término
+		// é maior do que o ano de início
 
 		scan.close();
 
