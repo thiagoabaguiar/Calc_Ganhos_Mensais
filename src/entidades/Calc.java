@@ -2,6 +2,7 @@ package entidades;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -94,15 +95,27 @@ public class Calc {
 //		// removendo um contrato do worker worker1.removeContract(2);
 //		System.out.println(worker1);
 		
-		LocalDate dataInicioContrato = LocalDate.parse("2024-01-15");
-		LocalDate dataTerminoContrato = LocalDate.parse("2025-01-10");
+		LocalDate dataInicioContrato = LocalDate.parse("2020-12-01");
+		LocalDate dataTerminoContrato = LocalDate.parse("2026-12-30");
 		Contrato contrato = new Contrato(1,dataInicioContrato,dataTerminoContrato,100,200d);
 		//contrato.calculaValorTotalDoContrato(dataInicioContrato,dataTerminoContrato);
 	
 		System.out.println("contrato: " + contrato);
 		System.out.println("============================");
+		Integer totalDeMesesContrato = contrato.calculaTotalDeMesesContrato();
+		System.out.println("Total de Meses do Contrato: " + totalDeMesesContrato);
+		
+		Integer totalDeMesesCheiosContrato = contrato.calculaTotalDeMesesCheiosContrato();
+		System.out.println("Total de Meses Cheios do Contrato: " + totalDeMesesCheiosContrato);
+		
+		Double valorDeMesesCheiosContrato = contrato.calculaValorDeMesesCheiosContrato();
+		System.out.println("Valor de Meses Cheios do Contrato: " + valorDeMesesCheiosContrato);
+		
+		Double valorDeMesesContrato = contrato.calculaValorDeMesesContrato();
+		System.out.println("Valor de Meses do Contrato: " + valorDeMesesContrato);
+		
 		//System.out.println("mês de início: " + contrato.calculaValorPrimeiroMes());		
-		System.out.println("meses do meio: " + contrato.calculaValorMesesDoMeio());
+		//System.out.println("meses total: " + contrato.calculaQtdMesesDoMeioQdoContratoNaoIniciaETerminaNoMesmoAno());
 		//System.out.println("mês de término: " + contrato.calculaValorUltimoMes());
 		//System.out.println("TOTAL: " + contrato.somaTudo());	
 		
